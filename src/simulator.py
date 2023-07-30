@@ -3,10 +3,11 @@ from src.deck import Deck
 
 
 class TexasHoldemSimulator:
-    def __init__(self, players, game_config, deck_config):
+    def __init__(self, players, game_config, deck_config, clairvoyant):
         self.players = players
         self.game_config = game_config
         self.deck_config = deck_config
+        self.clairvoyant = clairvoyant
 
         self.hand_probabilities = {}
         self.big_blind_index = None
@@ -97,7 +98,8 @@ class TexasHoldemSimulator:
                     tmp_deck.remove_cards(current_player.hand)
                     tmp_deck.remove_cards(self.community_cards)
                     win_pct = self.sim_runouts(current_player.hand, current_player.opp_range, tmp_deck, it=500)
-                    print(f'{current_player.name} thinks that they win about {round(win_pct*100)}% of the time')
+                    if self.clairvoyant:
+                        print(f'{current_player.name} thinks that they win about {round(win_pct*100)}% of the time')
                     bet = current_player.take_action(win_pct, self.hand_probabilities, amount_to_call,
                                                      min([player.chips + amount_to_call for player in self.players] +
                                                          [current_player.chips]), self.pot)
@@ -145,7 +147,8 @@ class TexasHoldemSimulator:
         tmp_deck.remove_cards(current_player.hand)
         tmp_deck.remove_cards(self.community_cards)
         win_pct = self.sim_runouts(current_player.hand, current_player.opp_range, tmp_deck, it=500)
-        print(f'{current_player.name} thinks that they win about {round(win_pct * 100)}% of the time')
+        if self.clairvoyant:
+            print(f'{current_player.name} thinks that they win about {round(win_pct * 100)}% of the time')
         bet = current_player.take_action(win_pct, self.hand_probabilities, amount_to_call,
                                          min([player.chips + amount_to_call for player in self.players] +
                                              [current_player.chips]), self.pot)

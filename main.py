@@ -33,11 +33,11 @@ for i in range(it):
     stack_size = 1000
     players = [
         Player(strategy=poker_strat, bayesian=True, name='Bayesian', stack=stack_size),
-        Player(strategy=poker_strat, bayesian=False, name='Frequentist', stack=stack_size)
+        Player(strategy=user_strat, bayesian=False, name='Frequentist', stack=stack_size)
     ]
 
     # Play a round
-    simulator = TexasHoldemSimulator(players, game_config, deck_config)
+    simulator = TexasHoldemSimulator(players, game_config, deck_config, clairvoyant=False)
     simulator.run_simulation(num_rounds=100)
 
     if simulator.players[0].chips > big_blind:
