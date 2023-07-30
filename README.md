@@ -1,6 +1,6 @@
 # Bayesian Poker Simulator
 
-This repo contains the code necessary to perform a simulation comparing Bayesian vs Frequentist strategies in Texas Hold'em poker as detailed in [trevorsquires.com/content.](https://trevorsquires.com/subpages/bayesian_poker) 
+This repo contains the code necessary to perform a simulation comparing Bayesian vs Frequentist strategies in Texas Hold'em poker as detailed in [here.](https://trevorsquires.com/subpages/bayesian_poker) 
 
 To run the simulation, simply run the script main.py which requires very few, if any, packages preinstalled. As a note, the repo is in pretty bad shape.  
 My goal for the project was to explore the mathematical side of things while supporting them with a Monte-Carlo simulation.  
