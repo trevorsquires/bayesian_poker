@@ -25,15 +25,21 @@ big_blind = 10
 big_blind_index = 0
 game_config = {'big_blind': big_blind}
 
-# Create players
-stack_size = 1000
-players = [
-    Player(strategy=poker_strat, bayesian=True, name='Bayesian', stack=stack_size),
-    Player(strategy=poker_strat, bayesian=False, name='Frequentist', stack=stack_size)
-]
+# Simulate buy-ins
+it = 1
+bayesian_win_count = 0
+for i in range(it):
+    # Create players
+    stack_size = 1000
+    players = [
+        Player(strategy=poker_strat, bayesian=True, name='Bayesian', stack=stack_size),
+        Player(strategy=poker_strat, bayesian=False, name='Frequentist', stack=stack_size)
+    ]
 
-# Play a round
-simulator = TexasHoldemSimulator(players, game_config, deck_config)
-simulator.run_simulation(num_rounds=100)
+    # Play a round
+    simulator = TexasHoldemSimulator(players, game_config, deck_config)
+    simulator.run_simulation(num_rounds=100)
 
+    if simulator.players[0].chips > big_blind:
+        bayesian_win_count += 1
 

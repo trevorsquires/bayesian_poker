@@ -1,6 +1,4 @@
-import copy
 import random
-from src.evaluator import Evaluator
 
 
 def user_strategy(hand, win_probabilities, amount_to_call, max_bet, pot):
@@ -10,7 +8,10 @@ def user_strategy(hand, win_probabilities, amount_to_call, max_bet, pot):
 
 
 def naive_strategy(win_pct, amount_to_call, max_bet, pot):
-    desired_bet = round(pot*win_pct/(1-win_pct))
+    if win_pct == 1:
+        desired_bet = max_bet+1
+    else:
+        desired_bet = round(pot*win_pct/(1-win_pct))
 
     if desired_bet < amount_to_call:
         return 0  # if odds aren't good, fold

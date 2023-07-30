@@ -1,9 +1,5 @@
 import random
 from src.deck import Deck
-"""
-TODO LIST
-    - Move things into more functions using the DRY and "1 job" principles
-"""
 
 
 class TexasHoldemSimulator:
@@ -339,7 +335,7 @@ class TexasHoldemSimulator:
 
     def run_simulation(self, num_rounds):
         for i in range(num_rounds):
-            if min([player.chips for player in self.players]) == 0:
+            if min([player.chips for player in self.players]) < self.game_config['big_blind']:
                 break
             print(f"\n=============== Round {i+1} ===============")
             self.play_round()
